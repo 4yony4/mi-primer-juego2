@@ -20,11 +20,19 @@ export class Game extends Scene
         this.load.image('star', 'star.png');
         this.load.image('bomb', 'bomb.png');
         this.load.spritesheet('dude', 'dude.png', { frameWidth: 32, frameHeight: 48 });
+
+        // Load the tileset image
+        this.load.image('tileset1', 'tilesets/tileset1.png');
+
+        // Load the tilemap
+        this.load.tilemapTiledJSON('mapa1', 'tilemaps/mapa1.json');
     }
 
     create ()
     {
         this.add.image(400, 300, 'sky');
+
+        this.inicializarMapa();
 
         this.score = 0;
         this.scoreText = this.add.text(50, 50, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -73,6 +81,17 @@ export class Game extends Scene
         this.inicializarBombas();
         
         
+    }
+
+    inicializarMapa(){
+        // Create the tilemap
+        var mapa1 = this.make.tilemap({ key: 'mapa1' });
+
+        // Add the tileset image used in Tiled (name must match the name in Tiled)
+        var tileset1 = mapa1.addTilesetImage('tileset1', 'tileset1');
+        var capaTierra = mapa1.createLayer('Tierra', tileset1, 0, 0);
+
+
     }
 
     inicializarEstrellas(){

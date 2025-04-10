@@ -1,0 +1,29 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 0.33
+        },
+        "#tileset1": {
+            "dynamicWrapping": false
+        }
+    },
+    "last.exportedFilePath": "/Users/eurekamps/Dev/Web/DAW1/mi-primer-juego2/public/assets/tilemaps",
+    "last.imagePath": "/Users/eurekamps/Dev/Web/DAW1/mi-primer-juego2/public/assets/tilesets",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "mapas.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.embedInMap": true,
+    "tileset.transparentColor": "#69b7d3",
+    "tileset.useTransparentColor": true
+}
