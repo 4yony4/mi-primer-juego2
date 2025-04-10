@@ -45,7 +45,7 @@ export class Game extends Scene
         this.suelos.create(50, 250, 'ground');
         this.suelos.create(750, 220, 'ground');*/
 
-        this.player = this.physics.add.sprite(100, 450, 'dude');
+        this.player = this.physics.add.sprite(100, 0, 'dude');
 
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
@@ -73,14 +73,22 @@ export class Game extends Scene
         });
 
         //this.physics.add.collider(this.player, this.suelos);
+        
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
         this.inicializarEstrellas();
 
         this.inicializarBombas();
+
+        this.inicializarColisiones();
         
         
+    }
+
+    inicializarColisiones(){
+
+        this.physics.add.collider(this.player, this.colTierraOjects);
     }
 
     inicializarMapa(){
@@ -100,8 +108,10 @@ export class Game extends Scene
             var collider = this.colTierraOjects.create(obj.x, obj.y, null);
             collider.setSize(obj.width, obj.height);
             collider.setVisible(false); // if you don't want to see it
-            collider.body.setOffset(0, 0);
+            collider.body.setOffset(0, 20);
         });
+
+        
 
     }
 
