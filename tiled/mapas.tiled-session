@@ -25,5 +25,5 @@
     ],
     "tileset.embedInMap": true,
     "tileset.transparentColor": "#69b7d3",
-    "tileset.useTransparentColor": true
+    "tileset.useTransparentColor": false
 }

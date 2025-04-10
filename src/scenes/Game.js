@@ -19,10 +19,12 @@ export class Game extends Scene
         this.load.image('ground', 'platform.png');
         this.load.image('star', 'star.png');
         this.load.image('bomb', 'bomb.png');
+        this.load.image('toad', 'toad.png');
         this.load.spritesheet('dude', 'dude.png', { frameWidth: 32, frameHeight: 48 });
 
         // Load the tileset image
         this.load.image('tileset1', 'tilesets/tileset1.png');
+        this.load.image('tileset2', 'tilesets/tileset2.png');
 
         // Load the tilemap
         this.load.tilemapTiledJSON('mapa1', 'tilemaps/mapa1.json');
@@ -31,6 +33,7 @@ export class Game extends Scene
     create ()
     {
         this.add.image(400, 300, 'sky');
+        //this.add.image(400, 300, 'toad').setScale(0.5);
 
         this.inicializarMapa();
 
@@ -86,9 +89,22 @@ export class Game extends Scene
         
     }
 
+    collectToad(player, toad){
+        this.score=this.score+100;
+        this.scoreText.setText('Score: ' + this.score);
+        this.player.setScale(2);
+
+        toad.disableBody(true, true);
+    }
+
     inicializarColisiones(){
 
         this.physics.add.collider(this.player, this.colTierraOjects);
+        this.physics.add.collider(this.stars, this.colTierraOjects);
+
+        this.physics.add.collider(this.player, this.colArbolesOjects);
+        this.physics.add.overlap(this.player, this.toads, this.collectToad, null, this);
+
     }
 
     inicializarMapa(){
@@ -97,7 +113,11 @@ export class Game extends Scene
 
         // Add the tileset image used in Tiled (name must match the name in Tiled)
         var tileset1 = mapa1.addTilesetImage('tileset1', 'tileset1');
+        var tileset2 = mapa1.addTilesetImage('tileset2', 'tileset2');
+
         var capaTierra = mapa1.createLayer('Tierra', tileset1, 0, 0);
+        var capaArboles = mapa1.createLayer('Arboles', tileset2, 0, 0);
+
 
         var colTierraLayer = mapa1.getObjectLayer('ColTierra');
 
@@ -111,6 +131,29 @@ export class Game extends Scene
             collider.body.setOffset(0, 20);
         });
 
+        var colArbolesLayer = mapa1.getObjectLayer('ColArboles');
+
+        this.colArbolesOjects = this.physics.add.staticGroup();
+
+        colArbolesLayer.objects.forEach(obj => {
+            
+            var collider = this.colArbolesOjects.create(obj.x, obj.y, null);
+            collider.setSize(obj.width, obj.height);
+            collider.setVisible(false); // if you don't want to see it
+            collider.body.setOffset(0, 20);
+        });
+
+
+        var toadsLayer = mapa1.getObjectLayer('Toads');
+
+        this.toads = this.physics.add.staticGroup();
+
+        toadsLayer.objects.forEach(obj => {
+            this.toads.create(obj.x, obj.y, 'toad').setScale(0.1).refreshBody();
+            //this.add.image(obj.x, obj.y, 'toad').setScale(0.1);
+        });
+
+        
         
 
     }
@@ -123,7 +166,7 @@ export class Game extends Scene
             star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         }
 
-        //this.physics.add.collider(this.stars, this.suelos);
+        //
 
         this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
