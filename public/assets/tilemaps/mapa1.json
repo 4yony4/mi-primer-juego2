@@ -32,9 +32,53 @@
          "width":30,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"ColTierra",
+         "objects":[
+                {
+                 "height":158.666666666667,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":546.666666666667,
+                 "x":409.333333333333,
+                 "y":480
+                }, 
+                {
+                 "height":190.666666666667,
+                 "id":10,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":405.333333333333,
+                 "x":1.33333333333331,
+                 "y":449.333333333333
+                }, 
+                {
+                 "height":25.3333333333333,
+                 "id":12,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":430.666666666667,
+                 "x":24,
+                 "y":313.333333333333
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":2,
- "nextobjectid":1,
+ "nextlayerid":3,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",

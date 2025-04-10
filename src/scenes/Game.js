@@ -37,13 +37,13 @@ export class Game extends Scene
         this.score = 0;
         this.scoreText = this.add.text(50, 50, 'score: 0', { fontSize: '32px', fill: '#000' });
         
-        this.suelos=this.physics.add.staticGroup();
+        /*this.suelos=this.physics.add.staticGroup();
 
         this.suelos.create(400, 568, 'ground').setScale(2).refreshBody();
 
         this.suelos.create(600, 400, 'ground');
         this.suelos.create(50, 250, 'ground');
-        this.suelos.create(750, 220, 'ground');
+        this.suelos.create(750, 220, 'ground');*/
 
         this.player = this.physics.add.sprite(100, 450, 'dude');
 
@@ -72,7 +72,7 @@ export class Game extends Scene
             repeat: -1
         });
 
-        this.physics.add.collider(this.player, this.suelos);
+        //this.physics.add.collider(this.player, this.suelos);
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -91,6 +91,17 @@ export class Game extends Scene
         var tileset1 = mapa1.addTilesetImage('tileset1', 'tileset1');
         var capaTierra = mapa1.createLayer('Tierra', tileset1, 0, 0);
 
+        var colTierraLayer = mapa1.getObjectLayer('ColTierra');
+
+        this.colTierraOjects = this.physics.add.staticGroup();
+
+        colTierraLayer.objects.forEach(obj => {
+            
+            var collider = this.colTierraOjects.create(obj.x, obj.y, null);
+            collider.setSize(obj.width, obj.height);
+            collider.setVisible(false); // if you don't want to see it
+            collider.body.setOffset(0, 0);
+        });
 
     }
 
@@ -102,7 +113,7 @@ export class Game extends Scene
             star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         }
 
-        this.physics.add.collider(this.stars, this.suelos);
+        //this.physics.add.collider(this.stars, this.suelos);
 
         this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
